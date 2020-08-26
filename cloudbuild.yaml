@@ -6,3 +6,13 @@ steps:
   - name: "gcr.io/cloud-builders/docker"
     args: ["push", "gcr.io/$PROJECT_ID/sample"]
 
+  - name: 'gcr.io/cloud-builders/gke-deploy'
+    id: Deploy to Kubernetes Engine
+    args:
+      - 'run'
+      - '--filename'
+      - cloud-run-sample-flask/deployment/staging/
+      - '--location'
+      - asia-south1
+      - '--cluster'
+      - cluster-2
